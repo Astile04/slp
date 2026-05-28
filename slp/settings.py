@@ -1,5 +1,6 @@
 from pathlib import Path
 from decouple import config
+import dj_database_url
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -67,14 +68,7 @@ WSGI_APPLICATION = 'slp.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'slp_db', 
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',    
-        'PORT': '3306',
-    }
+    'default': dj_database_url.parse(config('DATABASE_URL'))
 }
 
 
